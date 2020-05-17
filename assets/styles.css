@@ -31,8 +31,7 @@ header {
   float: left;
 }
 #searchHistory {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 5px;
 }
 #currentCity {
   margin: 10px;
@@ -40,13 +39,23 @@ header {
   border-right: none;
   padding: 15px;
 }
+#cityHeader {
+  margin-left: 1px;
+  display: inline-flex;
+}
 #cityName {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  padding-top: 10px;
 }
 
 #forecastHeader {
   margin: 10px;
 }
 #fiveDayForecast {
+  padding-left: 0px;
   margin-left: 5px;
+  display: flex;
+  justify-content: space-evenly;
+}
+#fiveDatForecast-breakpoints {
 }

@@ -21,13 +21,12 @@
         <div class="row" id="searchRow">
           <input
             type="text"
-            class="form-control col-sm-8"
+            class="form-control col-sm-12 col-md-6 col-lg-8"
             id="search"
-            placeholder="City, ST, CO"
           />
           <button
             type="button"
-            class="btn btn-primary fas fa-search-location col-sm-2"
+            class="btn btn-primary fas fa-search-location col-sm-6 col-md-2"
             id="searchBtn"
           ></button>
         </div>
@@ -35,23 +34,31 @@
       </div>
       <div class="col-sm-8" id="currentWeather">
         <div id="currentCity">
-          <h4 id="cityName"></h4>
+          <div id="cityHeader">
+          <h4  id="cityName"></h4>
+          <img  id="icon">
+          </div>
           <div>
             <p id="temp"></p>
             <p id="humidity"></p>
             <p id="wind"></p>
-            <p id="uvIndex"></p>
+            <p id="uvIndex"></span></p>
           </div>
         </div>
         <h4 id="forecastHeader">5-Day Forecast:</h4>
-        <div id="fiveDayForecast"></div>
+        <div class="row" id="fiveDayForecast"></div>
       </div>
     </container>
     <script
       src="https://kit.fontawesome.com/08384b8573.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+    crossorigin="anonymous"
+  ></script>    
+  <script src="assets/script.js"></script>
   </body>
 </html>
