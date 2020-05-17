@@ -1,0 +1,52 @@
+header {
+  font-size: xx-large;
+  text-align: center;
+  background-color: #3d3d3d;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#history {
+  background-color: #f3f2ed;
+}
+
+#searchP {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+#searchRow {
+  margin-left: 5px;
+  margin-top: 0px;
+}
+
+#search {
+  height: 30px;
+  padding-left: 10px;
+}
+
+#searchBtn {
+  float: left;
+}
+#searchHistory {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#currentCity {
+  margin: 10px;
+  border: solid 1px #c2bfbf;
+  border-right: none;
+  padding: 15px;
+}
+#cityName {
+  margin-bottom: 20px;
+}
+
+#forecastHeader {
+  margin: 10px;
+}
+#fiveDayForecast {
+  margin-left: 5px;
+}
