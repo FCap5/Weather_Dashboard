@@ -42,16 +42,18 @@ I'm going to have to take another crack at this one and see if I can work out th
 
 I ended up moving the setting to local storage inside of the first ajax call. This made streamlined things and enabled me to use the following code to find any potential repeat entries and splice them out.
 
-> if (cityLSSplit.length <= 10) {
-> for (i = 0; i < cityLSSplit.length; i++) {
-> if (newCityName == cityLSSplit[i]) {
-> cityLSSplit.splice(i, 1);
-> }
-> }
-> } else {
-> for (i = cityLSSplit.length - 10; i < cityLSSplit.length; i++) {
-> cityLSSplit.splice(i, 1);
-> }
-> }
-> cityArrayLS.push(cityLSSplit);
-> }
+```
+if (cityLSSplit.length <= 10) {
+ for (i = 0; i < cityLSSplit.length; i++) {
+if (newCityName == cityLSSplit[i]) {
+cityLSSplit.splice(i, 1);
+}
+}
+} else {
+for (i = cityLSSplit.length - 10; i < cityLSSplit.length; i++) {
+cityLSSplit.splice(i, 1);
+}
+}
+cityArrayLS.push(cityLSSplit);
+}
+```
