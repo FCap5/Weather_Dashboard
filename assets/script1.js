@@ -46,42 +46,21 @@ function addRecentSearch() {
   $("#searchHistory").prepend(recentCity);
 }
 //search button event listener
-$("#searchBtn").click(function () {
-  //sets cityName to search value
-  cityName = $("#search").val();
-  clickyClicky();
-});
 
 $(".historyBtn").on("click", function () {
   //sets cityName to value of button clicked
   cityName = $(this).html();
-
-  clickyClicky();
-});
-
-//reloads page so that history and current search update
-function clickyClicky() {
-  location.reload();
   runAPI();
 
-  //updating
-  var cityArray = [];
-  var cityLS = localStorage.getItem("cityHistory");
+  //clickyClicky();
+});
 
-  if (cityLS == null) {
-    cityArray.push(cityName);
-    localStorage.setItem("cityHistory", cityArray);
-  } else {
-    //if cityName != name in database{
-    //return error
-    //}else if cityName already used dont append
-    //else{
-    cityArray.push(cityLS);
-    cityArray.push(cityName);
-    localStorage.setItem("cityHistory", cityArray);
-  }
-}
-
+$("#searchBtn").click(function () {
+  cityName = $("#search").val();
+  $("#search").val("");
+  runAPI();
+  //location.reload();
+});
 function runAPI() {
   $.ajax({
     url: `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`,
@@ -103,10 +82,43 @@ function runAPI() {
     //getting UV - only available in onecall
     var lat = response.coord.lat;
     var lon = response.coord.lon;
+
+    var cityArray = [];
+    var cityLS = localStorage.getItem("cityHistory");
+    var newCityName = response.name;
+    var cityArrayLS = [];
+
+    /*     if (response == null) {
+      console.log("nope");
+    } */
+    if (cityLS == null) {
+      cityArray.push(newCityName);
+      localStorage.setItem("cityHistory", cityArray);
+    } else {
+      var cityLSSplit = cityLS.split(",");
+      //console.log(cityLSSPlit.length);
+
+      if (cityLSSplit.length <= 10) {
+        for (i = 0; i < cityLSSplit.length; i++) {
+          if (newCityName == cityLSSplit[i]) {
+            cityLSSplit.splice(i, 1);
+          }
+        }
+      } else {
+        for (i = cityLSSplit.length - 10; i < cityLSSplit.length; i++) {
+          cityLSSplit.splice(i, 1);
+        }
+      }
+      cityArrayLS.push(cityLSSplit);
+    }
+    cityArrayLS.push(newCityName);
+    localStorage.setItem("cityHistory", cityArrayLS);
+
     $.ajax({
       url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`,
       method: "GET",
     }).then(function (response) {
+      console.log(response);
       //setting text
       $("#uvIndex")
         .text("UV Index: ")
