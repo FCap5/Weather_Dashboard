@@ -37,3 +37,21 @@ There are still a few bugs I need to address. First, I need to set some if state
 This last one is something that I think could be tricky with the way I organized my script doc. Because the functioanlity for committing to local storage is linked to the the click event for the submit button outisde of the Ajax call, I need to figure out a way to compare the entry against the API database. However, I couldnt think of a way to do that with the clickevent outside of the API. Conversely, I could put the click event listener inside of the ajax call. The issue with that is that when I did that, I ended up running some function an additional 5 times, creating 6 total history button returns, which is not the desired effect.
 
 I'm going to have to take another crack at this one and see if I can work out the bugs. But, other than those two bugs, the app works as designed.
+
+## update
+
+I ended up moving the setting to local storage inside of the first ajax call. This made streamlined things and enabled me to use the following code to find any potential repeat entries and splice them out.
+
+> if (cityLSSplit.length <= 10) {
+> for (i = 0; i < cityLSSplit.length; i++) {
+> if (newCityName == cityLSSplit[i]) {
+> cityLSSplit.splice(i, 1);
+> }
+> }
+> } else {
+> for (i = cityLSSplit.length - 10; i < cityLSSplit.length; i++) {
+> cityLSSplit.splice(i, 1);
+> }
+> }
+> cityArrayLS.push(cityLSSplit);
+> }
