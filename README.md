@@ -57,3 +57,70 @@ cityLSSplit.splice(i, 1);
 cityArrayLS.push(cityLSSplit);
 }
 ```
+
+## update part two
+
+It's finally working the way I want. There were to key bits of code.
+
+1. First I expanded on the above code:
+
+```var cityArray = [];
+    var cityLS = localStorage.getItem("cityHistory");
+    var newCityName = response.name;
+    var cityArrayLS = [];
+
+    //if the user has yet to search for a city
+    if (cityLS == null) {
+      cityArray.push(newCityName);
+      localStorage.setItem("cityHistory", cityArray);
+
+      //if the user has already searched for a city
+    } else {
+      var cityLSSplit = cityLS.split(",");
+      //if the user has only searched for one city
+      //needed this because the split function would otherwise return a comma, which
+      //would then return a blank button in the city history field
+      if (cityLSSplit.length == 1) {
+        if (newCityName == cityLSSplit[0]) {
+        } else {
+          cityArrayLS.push(cityLSSplit);
+          localStorage.setItem("cityHistory", cityArrayLS);
+        }
+        //otherwise, it'll loop through the ten most recent searches to see if there are any repeats
+        //if there are, it'll splice the first instance by its index so that the new instance can be
+        //prepended to the history without repeat
+      } else {
+        if (cityLSSplit.length <= 10) {
+          for (i = 0; i < cityLSSplit.length; i++) {
+            if (newCityName == cityLSSplit[i]) {
+              cityLSSplit.splice(i, 1);
+            }
+          }
+        } else {
+          for (i = cityLSSplit.length - 10; i < cityLSSplit.length; i++) {
+            if (newCityName == cityLSSplit[i]) {
+              cityLSSplit.splice(i, 1);
+            }
+          }
+        }
+        cityArrayLS.push(cityLSSplit);
+      }
+    }
+    cityArrayLS.push(newCityName);
+    localStorage.setItem("cityHistory", cityArrayLS);
+```
+
+2. I found a function that allows me to wait until after the ajax call to run another function:
+
+```$(document).ajaxComplete(function () {
+    location.reload();
+  });
+```
+
+With this code, I was able to reload the page after the ajax call, which allowed me to prepend the current search as a button to the search history.
+
+It's been a journey, but I'm pleased I got there.
+
+## What I could improve
+
+I think that ultimately, I could have addressed local storage in a more efficient way. I think that constantly manipulating strings meant I had to use the split and splice functions, which in-turn meant I had to add additional workaround for these functions potential bugs. For example, if you are using split(","), and then you splice index 0 of the array you formed, it will initiate the new array with a comma. To combat this, as in the code above, I had to add an extra if-statemnt for instances where there was only one city name in local storage so that I could create the appropriate work-arounds.
