@@ -14,8 +14,9 @@
   </head>
   <body>
     <header>Weather Dashboard</header>
-
     <container class="row" id="infoBox">
+      <!--Div on left that contains search funtion and search history-->
+
       <div class="col-sm-3" id="history">
         <p id="searchP">Search For a City:</p>
         <div class="row" id="searchRow">
@@ -32,6 +33,7 @@
         </div>
         <div id="searchHistory"></div>
       </div>
+      <!--Div to display current weather information-->
       <div class="col-sm-8" id="currentWeather">
         <div id="currentCity">
           <div id="cityHeader">
@@ -45,7 +47,9 @@
             <p id="uvIndex"></span></p>
           </div>
         </div>
+        <!--Five Day Forecast-->
         <h4 id="forecastHeader">5-Day Forecast:</h4>
+        <!--Landing div for 5-day forecast from AJAX call-->
         <div class="row" id="fiveDayForecast"></div>
       </div>
     </container>
